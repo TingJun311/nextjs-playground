@@ -72,7 +72,7 @@ export const signInJWT = async ({ email }: signInJWTProps) => {
         });
 
 		const getUser: users_by_pk = account
-		cookies().set("so_userId", getUser.users_by_pk.guid)
+		cookies().set("so_userId", getUser.guid)
 
         //const user = await getUserInfo({ userId: session.userId });
         return { status: 200, body: account };

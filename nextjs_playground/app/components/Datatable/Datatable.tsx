@@ -10,6 +10,7 @@ import {
     TableCaption,
     TableContainer,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 interface Props {
     row: any;
@@ -45,7 +46,7 @@ const Datatable = ({ colorScheme = "teal", variant = "simple"}: Props) => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {data.map((i) => (
+                    {/* {data.map((i) => (
                         <Tr key={i.id}>
                             <Td>{i.id}</Td>
                             <Td>{i.name}</Td>
@@ -57,7 +58,7 @@ const Datatable = ({ colorScheme = "teal", variant = "simple"}: Props) => {
                                 </Link>
                             </Td>
                         </Tr>
-                    ))}
+                    ))} */}
                 </Tbody>
                 <Tfoot>
                     <Tr>
