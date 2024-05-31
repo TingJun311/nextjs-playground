@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { number } from "zod";
+
 declare type SearchParamProps = {
 	params: { [key: string]: string };
 	searchParams: { [key: string]: string | string[] | undefined };
@@ -12,6 +14,8 @@ declare type SignUpParams = {
 	email: string;
 	password: string;
 };
+
+
 
 declare type LoginUser = {
 	email: string;
@@ -292,6 +296,10 @@ declare interface signInProps {
 	password: string;
 }
 
+declare interface signInJWTProps {
+    email: string;
+}
+
 declare interface getUserInfoProps {
 	userId: string;
 }
@@ -320,4 +328,31 @@ declare interface getBankProps {
 
 declare interface getBankByAccountIdProps {
 	accountId: string;
+}
+
+declare interface users {
+    status: number;
+    body: {
+        users_by_pk: {
+			active: number;
+			created: string;
+			email: string;
+			fullname: string;
+			guid: string;
+			id: number;
+			updated: string;
+			username: string;
+		}
+    };
+}
+
+declare interface users_by_pk {
+    active: number;
+    created: string;
+    email: string;
+    fullname: string;
+    guid: string;
+    id: number;
+    updated: string;
+    username: string;
 }

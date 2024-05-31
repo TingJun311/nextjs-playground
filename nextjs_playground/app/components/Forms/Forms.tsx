@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions/user.actions";
+import { signIn, signUp, signInJWT } from "@/lib/actions/user.actions";
+import { users } from "@/types";
 
 const formSchema = z
 	.object({
@@ -58,23 +59,14 @@ const Forms = () => {
 		setIsLoading(true);
 
 		try {
-			const newUser = await signIn(values);
-            console.log("qwdqd ", newUser);
-			// if (
-			// 	values.email === "chewtingjun311@gmail.com" &&
-			// 	values.username === "Isaac" &&
-			// 	values.password === "CTJjun0311@("
-			// ) {
-			// 	//router.push("/objects");
-			// 	//window.location.href("/objects")
-
-			// 	// cookies().set('session', Session, {
-			// 	//     httpOnly: true,
-			// 	// })
-			// 	document.cookie = `token=testToken0123456789; expires=6000 path=/`;
-			// 	router.push("/profile");
-			// }
-		} catch {
+            const newUser: users = await signInJWT(values);
+            console.log(newUser.body);
+            if (newUser.body == null) {
+				router.replace("/login"); // If no token is found, redirect to login page
+				return;
+			}
+			router.push("/profile/" + newUser.body.users_by_pk.guid);
+        } catch {
 		} finally {
 			setIsLoading(false);
 		}

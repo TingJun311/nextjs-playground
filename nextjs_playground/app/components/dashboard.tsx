@@ -8,7 +8,7 @@ const ToDashBoard = () => {
             <Link
                 //className={`link ${pathname === "/dashboard" ? "active" : ""}`}
                 href="/dashboard"
-            >
+            >   
                 Dashboard
             </Link>
     );

@@ -1,42 +1,36 @@
 "use client";
-import Cookies from "js-cookie";
-//import jwt from "jsonwebtoken";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { NextRequest, NextResponse } from "next/server";
+import { useSearchParams } from 'next/navigation';
 
-function ProtectedPage() {
-    const router = useRouter();
+const ProtectedPage = (Req: NextRequest) => {
+    const searchParams = useSearchParams();
+    const name = searchParams.get("username");
+    const age = searchParams.get("id");
+    // useEffect(() => {
+    //     const token = Cookies.get("jwt-session");
 
-    useEffect(() => {
-        const token = Cookies.get("token");
+    //     if (!token) {
+    //         router.replace("/login"); // If no token is found, redirect to login page
+    //         return;
+    //     }
 
-        if (!token) {
-            router.replace("/login"); // If no token is found, redirect to login page
-            return;
-        }
+    //     // Validate the token by making an API call
+    //     const validateToken = async () => {
+    //         try {
+    //             const decoded = jwt.verify(token, "q");
+    //             if (!decoded) {
+    //                 router.replace("/login"); // If no token is found, redirect to login page
+    //                 return;
+    //             }
+    //         } catch (err) {
+    //             router.push("/login");
+    //         }
+    //     };
 
-        // Validate the token by making an API call
-        const validateToken = async () => {
-            // try {
-            //     const res = await fetch("/api/protected", {
-            //         headers: {
-            //             Authorization: `Bearer ${token}`,
-            //         },
-            //     });
-
-            //     if (!res.ok) throw new Error("Token validation failed");
-            // } catch (error) {
-            //     console.error(error);
-            //     router.replace("/"); // Redirect to login if token validation fails
-            // }
-            if (token !== "testToken0123456789") {
-                console.error("ERROR");
-                router.replace("/");
-            }
-        };
-
-        validateToken();
-    }, [router]);
+    //     validateToken();
+    // }, [router]);
+    console.log("qsqwsqwswqsqs1232 ", name, age)
+    
 
     return <div>Protected Content</div>;
 }
